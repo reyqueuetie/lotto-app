@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        #countdown {
+            font-size: 5rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="countdown">60</div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script>
+        const socket = io('http://localhost:3000'); // Connect to the publisher's WebSocket server
+
+        // Update the countdown display
+        socket.on('countdown', (countdown) => {
+            document.getElementById('countdown').textContent = countdown;
+        });
+    </script>
+</body>
+</html>
